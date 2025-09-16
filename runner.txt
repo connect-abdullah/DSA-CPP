@@ -1,0 +1,4 @@
+To Run The File :
+
+1. Compile: g++ filename.cpp -o filename
+2. Run: ./filename

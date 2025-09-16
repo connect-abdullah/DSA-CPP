@@ -39,7 +39,10 @@ using namespace std;
 struct Node {
     int data;
     Node* next;
-}
+    
+    // Constructor
+    Node(int value, Node* nextPtr = nullptr) : data(value), next(nextPtr) {}
+};
 
 class LinkedList {
     private: 
@@ -63,7 +66,7 @@ class LinkedList {
             }
         }
 
-    void insertAtStart(int value) {
+    void insertAtBeginning(int value) {
         Node* newNode = new Node(value, head);
         head = newNode;
         if(tail == nullptr) {
@@ -72,7 +75,7 @@ class LinkedList {
     }
 
     void insertAtEnd(int value) {
-        Node* newNode = new Node(value,nullptr);
+        Node* newNode = new Node(value, nullptr);
         if(head == nullptr) {
             head = tail = newNode;
         } else {
@@ -83,17 +86,17 @@ class LinkedList {
 
     void insertAfter(Node* prev, int value) {
         if(prev == nullptr) return;
-        Node* newNode = new Node(value,prev->value);
-        prev->value = newNode
+        Node* newNode = new Node(value, prev->next);
+        prev->next = newNode;
         if(prev == tail) tail = newNode;
     }
 
-    void deleteFromStart(){
+    void deleteFromBeginning(){
         if(head == nullptr) return;
         Node* temp = head;
         head = head->next;
         delete temp;
-        if(head == nullptr) tail == nullptr;
+        if(head == nullptr) tail = nullptr;
     }
 
     void deleteFromEnd() {
@@ -110,15 +113,15 @@ class LinkedList {
         }
         delete tail;
         tail = current;
-        tail->next = nullptr
+        tail->next = nullptr;
     }
 
     void deleteAfter(Node* prev) {
         if(prev == nullptr || prev->next == nullptr) return;
         Node* target = prev->next;
         prev->next = target->next;
-        if(target == tail) tail== prev;
-        delete target
+        if(target == tail) tail = prev;
+        delete target;
     }
 
     void display() {
@@ -129,8 +132,7 @@ class LinkedList {
         }
         cout << "NULL" << endl;
     }
-    
-}
+};
 
 int main() {
     LinkedList list;

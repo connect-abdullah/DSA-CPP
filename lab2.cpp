@@ -128,6 +128,52 @@ public:
   }
 
   Node *getHead() { return head; }
+
+  // Release ownership of all nodes without deleting them
+  void releaseOwnership() {
+    head = nullptr;
+    tail = nullptr;
+  }
+
+  Node* mergeLists(Node* list1, Node* list2) {
+    // if list1 is empty, merged list is just list2
+    if (list1 == nullptr) return list2;
+
+    // traverse list1 until last node
+    Node* current = list1;
+    while (current->next != nullptr) {
+        current = current->next;
+    }
+
+    // link last node of list1 to head of list2
+    current->next = list2;
+
+    // merged list head is still list1
+    return list1;
+}
+
+void findOccurrences(Node* head, int key) {
+  Node* current = head;
+  int index = 1;      // position tracker
+  int count = 0;      // how many times found
+
+  while (current != nullptr) {
+      if (current->data == key) {
+          cout << "Found at position: " << index << endl;
+          count++;
+      }
+      current = current->next;
+      index++;
+  }
+
+  if (count == 0) {
+      cout << "Element " << key << " not found in the list." << endl;
+  } else {
+      cout << "Total occurrences of " << key << ": " << count << endl;
+  }
+}
+
+
 };
 
 int main() {
@@ -146,6 +192,29 @@ int main() {
 
   cout << "List Recursively: ";
   list.displayRecursive(list.getHead());
+
+  // Create a second list to merge
+  LinkedList list2;
+  list2.insertAtEnd(40);
+  list2.insertAtEnd(50);
+
+  cout << "Second list: ";
+  list2.display();
+
+  // Merge list and list2
+  Node* mergedHead = list.mergeLists(list.getHead(), list2.getHead());
+
+  cout << "Merged list: ";
+  Node* temp = mergedHead;
+  while (temp != nullptr) {
+    cout << temp->data << " -> ";
+    temp = temp->next;
+  }
+  cout << "Null" << endl;
+
+  // Clear list2's ownership to prevent double-delete
+  // Since list2's nodes are now part of list, we need to prevent list2's destructor from deleting them
+  list2.releaseOwnership();
 
   return 0;
 }

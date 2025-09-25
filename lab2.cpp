@@ -198,31 +198,31 @@ public:
     }
   }
 
-  void bubbleSort(Node* head) {
-    if (!head) return;
+  void bubbleSort(Node *head) {
+    if (!head)
+      return;
     bool swapped;
-    Node* ptr;
-    Node* lptr = nullptr;  // last sorted element
+    Node *ptr;
+    Node *lptr = nullptr; // last sorted element
 
     do {
-        swapped = false;
-        ptr = head;
+      swapped = false;
+      ptr = head;
 
-        while (ptr->next != lptr) {
-            if (ptr->data > ptr->next->data) {
-                // swap values (simpler than swapping nodes)
-                int temp = ptr->data;
-                ptr->data = ptr->next->data;
-                ptr->next->data = temp;
-                swapped = true;
-            }
-            ptr = ptr->next;
+      while (ptr->next != lptr) {
+        if (ptr->data > ptr->next->data) {
+          // swap values (simpler than swapping nodes)
+          int temp = ptr->data;
+          ptr->data = ptr->next->data;
+          ptr->next->data = temp;
+          swapped = true;
         }
-        lptr = ptr;  // shrink last boundary
+        ptr = ptr->next;
+      }
+      lptr = ptr; // shrink last boundary
     } while (swapped);
-}
-
-
+  }
+  
   void splitLink(Node *head) {
     int count = 0;
     Node *current = head;
@@ -234,16 +234,16 @@ public:
     int half = count / 2;
 
     current = head;
-    Node *first = head;  
-    Node *second = nullptr; 
+    Node *first = head;
+    Node *second = nullptr;
 
     for (int j = 0; j < half - 1 && current != nullptr; j++) {
       current = current->next;
     }
 
     if (current != nullptr && current->next != nullptr) {
-      second = current->next;   
-      current->next = nullptr; 
+      second = current->next;
+      current->next = nullptr;
     }
 
     cout << "First half: ";

@@ -72,4 +72,5 @@ int main () {
     rms.displayAllRequests();
     rms.peekReturnReq();
 
+    return 0;
 }

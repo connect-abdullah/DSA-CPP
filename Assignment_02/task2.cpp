@@ -114,5 +114,6 @@ int main () {
     bn.displayHistory();
     bn.goForward();
     bn.displayHistory();
-
+    
+    return 0;
 }

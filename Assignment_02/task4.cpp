@@ -19,7 +19,7 @@ public:
     Node *newNode = new Node(boxNumber, boxWeight);
 
     // Popping until we find a heavier or equal box
-    while (top != nullptr && boxWeight > top->boxWeight) {
+    while (top != nullptr && boxWeight >= top->boxWeight) {
       Node *temp = top;
       top = top->prev;
       delete temp;
@@ -53,7 +53,7 @@ int main() {
   ls.placeBox("B103", 35);
   ls.placeBox("B104", 25);
   ls.placeBox("B105", 5);
-  ls.placeBox("B106",36);
+  ls.placeBox("B106",35);
 
   ls.displayBoxList();
   return 0;

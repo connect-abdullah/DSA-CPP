@@ -53,23 +53,23 @@ public:
         displayTree(root->left, space, height);
     }
 
-    void inorder(Node* root) {
+    void inorder(Node* root) { 
         if (root == nullptr) return;
-        inorder(root->left);
+        inorder(root->left); // Left Root Right
         cout << root->data << " ";
         inorder(root->right);
     }
 
     void preorder(Node* root) {
         if (root == nullptr) return;
-        cout << root->data << " ";
+        cout << root->data << " "; // Root Left Right
         preorder(root->left);
         preorder(root->right);
     }
     
     void postorder(Node* root) {
         if (root == nullptr) return;
-        postorder(root->left);
+        postorder(root->left); // Left Right Root
         postorder(root->right);
         cout << root->data << " ";
     }
